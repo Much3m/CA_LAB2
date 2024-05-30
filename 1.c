@@ -251,7 +251,7 @@ int clock_cycle(int cycle) {
                 printf("branch performed!! Invalid instructions in the previous stages.\n");
                 // TODO. 프로그램 카운터 값 목적지 주소로 업데이트
                 // TODO. Branch taken으로 인한, pipelining stage 업데이트
-                pc = EX_MEM.pc + EX_MEM.decoded_inst.imm;
+                pc += EX_MEM.decoded_inst.imm;
                 IF_ID.valid = 0;
                 ID_EX.valid = 0;
             }
@@ -261,7 +261,7 @@ int clock_cycle(int cycle) {
                 printf("branch performed!! Invalid instructions in the previous stages.\n");
                 // TODO. 프로그램 카운터 값 목적지 주소로 업데이트
                 // TODO. Branch taken으로 인한, pipelining stage 업데이트
-                pc = EX_MEM.pc + EX_MEM.decoded_inst.imm;
+                pc += EX_MEM.decoded_inst.imm;
                 IF_ID.valid = 0;
                 ID_EX.valid = 0;
             }
@@ -346,7 +346,6 @@ int clock_cycle(int cycle) {
         return 1;
 
 }
-
 
 int main() {
     /// 프로그램 A를 위한 초기화
