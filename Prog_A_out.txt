@@ -1,0 +1,279 @@
+***  Current Cycle:00, PC:00  *** 
+IF stage: binary value of inst[0]
+Register[x02]: 4 
+Register[x03]: 8 
+Register[x05]: 16 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[09]: 40 
+
+***  Current Cycle:01, PC:04  *** 
+ID stage: opcode: ADD, rd:x01, rs1:x02, rs2:x03
+IF stage: binary value of inst[1]
+Register[x02]: 4 
+Register[x03]: 8 
+Register[x05]: 16 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[09]: 40 
+
+***  Current Cycle:02, PC:08  *** 
+EX stage: opcode: ADD, rd:x01, rs1:x02, rs2:x03
+ID stage: opcode: ADDI, rd:x02, rs1:x00, imm:32, 
+IF stage: binary value of inst[2]
+Register[x02]: 4 
+Register[x03]: 8 
+Register[x05]: 16 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[09]: 40 
+
+***  Current Cycle:03, PC:12  *** 
+MEM stage: opcode: ADD, rd:x01, rs1:x02, rs2:x03
+EX stage: opcode: ADDI, rd:x02, rs1:x00, imm:32, 
+ID stage: opcode: LW, rd:x04, offset:00, rs1:x03
+IF stage: binary value of inst[3]
+Register[x02]: 4 
+Register[x03]: 8 
+Register[x05]: 16 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[09]: 40 
+
+***  Current Cycle:04, PC:16  *** 
+WB stage: opcode: ADD, rd:x01, rs1:x02, rs2:x03
+MEM stage: opcode: ADDI, rd:x02, rs1:x00, imm:32, 
+EX stage: opcode: LW, rd:x04, offset:00, rs1:x03
+ID stage: opcode: ADD, rd:x05, rs1:x02, rs2:x01
+IF stage: binary value of inst[4]
+Register[x01]: 12 
+Register[x02]: 4 
+Register[x03]: 8 
+Register[x05]: 16 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[09]: 40 
+
+***  Current Cycle:05, PC:20  *** 
+WB stage: opcode: ADDI, rd:x02, rs1:x00, imm:32, 
+MEM stage: opcode: LW, rd:x04, offset:00, rs1:x03
+EX stage: opcode: ADD, rd:x05, rs1:x02, rs2:x01
+ID stage: opcode: SW, rs1:x02, offset:00, rs2:x02
+IF stage: binary value of inst[5]
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x05]: 16 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[09]: 40 
+
+***  Current Cycle:06, PC:24  *** 
+WB stage: opcode: LW, rd:x04, offset:00, rs1:x03
+MEM stage: opcode: ADD, rd:x05, rs1:x02, rs2:x01
+EX stage: opcode: SW, rs1:x02, offset:00, rs2:x02
+ID stage: opcode: ADDI, rd:x06, rs1:x02, imm:30, 
+IF stage: binary value of inst[6]
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 16 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[09]: 40 
+
+***  Current Cycle:07, PC:28  *** 
+WB stage: opcode: ADD, rd:x05, rs1:x02, rs2:x01
+MEM stage: opcode: SW, rs1:x02, offset:00, rs2:x02
+EX stage: opcode: ADDI, rd:x06, rs1:x02, imm:30, 
+ID stage: opcode: SW, rs1:x02, offset:16, rs2:x04
+IF stage: binary value of inst[7]
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+
+***  Current Cycle:08, PC:32  *** 
+WB stage: opcode: SW, rs1:x02, offset:00, rs2:x02
+MEM stage: opcode: ADDI, rd:x06, rs1:x02, imm:30, 
+EX stage: opcode: SW, rs1:x02, offset:16, rs2:x04
+ID stage: opcode: BEQ, rs1:x04, rs2:05, imm:08
+IF stage: binary value of inst[8]
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+
+***  Current Cycle:09, PC:36  *** 
+WB stage: opcode: ADDI, rd:x06, rs1:x02, imm:30, 
+MEM stage: opcode: SW, rs1:x02, offset:16, rs2:x04
+EX stage: opcode: BEQ, rs1:x04, rs2:05, imm:08
+ID stage: opcode: BLT, rs1:x04, rs2:x05, imm:08
+IF stage: binary value of inst[9]
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+
+***  Current Cycle:10, PC:40  *** 
+WB stage: opcode: SW, rs1:x02, offset:16, rs2:x04
+branch performed!! Invalid instructions in the previous stages.
+MEM stage: opcode: BEQ, rs1:x04, rs2:05, imm:08
+IF stage: binary value of inst[9]
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+
+***  Current Cycle:11, PC:40  *** 
+WB stage: opcode: BEQ, rs1:x04, rs2:05, imm:08
+ID stage: opcode: ADDI, rd:x07, rs1:x00, imm:01, 
+IF stage: binary value of inst[10]
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+
+***  Current Cycle:12, PC:44  *** 
+EX stage: opcode: ADDI, rd:x07, rs1:x00, imm:01, 
+ID stage: opcode: ADDI, rd:x08, rs1:x00, imm:02, 
+There is no more instruction to read.
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+
+***  Current Cycle:13, PC:44  *** 
+MEM stage: opcode: ADDI, rd:x07, rs1:x00, imm:01, 
+EX stage: opcode: ADDI, rd:x08, rs1:x00, imm:02, 
+There is no more instruction to read.
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 7 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+
+***  Current Cycle:14, PC:44  *** 
+WB stage: opcode: ADDI, rd:x07, rs1:x00, imm:01, 
+MEM stage: opcode: ADDI, rd:x08, rs1:x00, imm:02, 
+There is no more instruction to read.
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 1 
+Register[x08]: 8 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+
+***  Current Cycle:15, PC:44  *** 
+WB stage: opcode: ADDI, rd:x08, rs1:x00, imm:02, 
+There is no more instruction to read.
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 1 
+Register[x08]: 2 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+
+ *** Program is done.. *** 
+Total cycle simulated: 15
+Register[x01]: 12 
+Register[x02]: 32 
+Register[x03]: 8 
+Register[x04]: 44 
+Register[x05]: 44 
+Register[x06]: 62 
+Register[x07]: 1 
+Register[x08]: 2 
+Register[x09]: 9 
+Memory[02]: 44 
+Memory[08]: 32 
+Memory[09]: 40 
+Memory[12]: 44 
+x3 = 8

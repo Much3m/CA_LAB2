@@ -1,0 +1,791 @@
+***  Current Cycle:00, PC:00  *** 
+IF stage: binary value of inst[0]
+
+***  Current Cycle:01, PC:04  *** 
+ID stage: opcode: SW, rs1:x08, offset:24, rs2:x00
+IF stage: binary value of inst[1]
+
+***  Current Cycle:02, PC:08  *** 
+EX stage: opcode: SW, rs1:x08, offset:24, rs2:x00
+ID stage: opcode: SW, rs1:x08, offset:20, rs2:x00
+IF stage: binary value of inst[2]
+
+***  Current Cycle:03, PC:12  *** 
+MEM stage: opcode: SW, rs1:x08, offset:24, rs2:x00
+EX stage: opcode: SW, rs1:x08, offset:20, rs2:x00
+ID stage: opcode: LW, rd:x14, offset:20, rs1:x08
+IF stage: binary value of inst[3]
+
+***  Current Cycle:04, PC:16  *** 
+WB stage: opcode: SW, rs1:x08, offset:24, rs2:x00
+MEM stage: opcode: SW, rs1:x08, offset:20, rs2:x00
+EX stage: opcode: LW, rd:x14, offset:20, rs1:x08
+ID stage: opcode: LUI, rd:x15, imm:00
+IF stage: binary value of inst[4]
+
+***  Current Cycle:05, PC:20  *** 
+WB stage: opcode: SW, rs1:x08, offset:20, rs2:x00
+MEM stage: opcode: LW, rd:x14, offset:20, rs1:x08
+EX stage: opcode: LUI, rd:x15, imm:00
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[5]
+
+***  Current Cycle:06, PC:24  *** 
+WB stage: opcode: LW, rd:x14, offset:20, rs1:x08
+MEM stage: opcode: LUI, rd:x15, imm:00
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+IF stage: binary value of inst[6]
+
+***  Current Cycle:07, PC:28  *** 
+WB stage: opcode: LUI, rd:x15, imm:00
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[7]
+
+***  Current Cycle:08, PC:32  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+alu_result : 4
+Truth Value : 0
+MEM stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+EX stage: opcode: LW, rd:x15, offset:24, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[8]
+Register[x15]: 4 
+
+***  Current Cycle:09, PC:36  *** 
+WB stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+MEM stage: opcode: LW, rd:x15, offset:24, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+IF stage: binary value of inst[9]
+Register[x15]: 4 
+
+***  Current Cycle:10, PC:40  *** 
+WB stage: opcode: LW, rd:x15, offset:24, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+ID stage: opcode: LW, rd:x15, offset:20, rs1:x08
+IF stage: binary value of inst[10]
+
+***  Current Cycle:11, PC:44  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+MEM stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+EX stage: opcode: LW, rd:x15, offset:20, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+IF stage: binary value of inst[11]
+Register[x15]: 4 
+Memory[06]: 4 
+
+***  Current Cycle:12, PC:48  *** 
+WB stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+MEM stage: opcode: LW, rd:x15, offset:20, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+ID stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+IF stage: binary value of inst[12]
+Register[x15]: 4 
+Memory[06]: 4 
+
+***  Current Cycle:13, PC:52  *** 
+WB stage: opcode: LW, rd:x15, offset:20, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+EX stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+ID stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[13]
+Memory[06]: 4 
+
+***  Current Cycle:14, PC:56  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+MEM stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+EX stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[14]
+Register[x15]: 1 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:15, PC:60  *** 
+WB stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+branch performed!! Invalid instructions in the previous stages.
+MEM stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[2]
+Register[x15]: 1 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:16, PC:12  *** 
+WB stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x14, offset:20, rs1:x08
+IF stage: binary value of inst[3]
+Register[x15]: 1 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:17, PC:16  *** 
+EX stage: opcode: LW, rd:x14, offset:20, rs1:x08
+ID stage: opcode: LUI, rd:x15, imm:00
+IF stage: binary value of inst[4]
+Register[x15]: 1 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:18, PC:20  *** 
+MEM stage: opcode: LW, rd:x14, offset:20, rs1:x08
+EX stage: opcode: LUI, rd:x15, imm:00
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[5]
+Register[x15]: 1 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:19, PC:24  *** 
+WB stage: opcode: LW, rd:x14, offset:20, rs1:x08
+MEM stage: opcode: LUI, rd:x15, imm:00
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+IF stage: binary value of inst[6]
+Register[x14]: 1 
+Register[x15]: 1 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:20, PC:28  *** 
+WB stage: opcode: LUI, rd:x15, imm:00
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[7]
+Register[x14]: 1 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:21, PC:32  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+alu_result : 3
+Truth Value : 0
+MEM stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+EX stage: opcode: LW, rd:x15, offset:24, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[8]
+Register[x14]: 1 
+Register[x15]: 4 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:22, PC:36  *** 
+WB stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+MEM stage: opcode: LW, rd:x15, offset:24, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+IF stage: binary value of inst[9]
+Register[x14]: 1 
+Register[x15]: 4 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:23, PC:40  *** 
+WB stage: opcode: LW, rd:x15, offset:24, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+ID stage: opcode: LW, rd:x15, offset:20, rs1:x08
+IF stage: binary value of inst[10]
+Register[x14]: 1 
+Register[x15]: 4 
+Memory[05]: 1 
+Memory[06]: 4 
+
+***  Current Cycle:24, PC:44  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+MEM stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+EX stage: opcode: LW, rd:x15, offset:20, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+IF stage: binary value of inst[11]
+Register[x14]: 1 
+Register[x15]: 8 
+Memory[05]: 1 
+Memory[06]: 8 
+
+***  Current Cycle:25, PC:48  *** 
+WB stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+MEM stage: opcode: LW, rd:x15, offset:20, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+ID stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+IF stage: binary value of inst[12]
+Register[x14]: 1 
+Register[x15]: 8 
+Memory[05]: 1 
+Memory[06]: 8 
+
+***  Current Cycle:26, PC:52  *** 
+WB stage: opcode: LW, rd:x15, offset:20, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+EX stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+ID stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[13]
+Register[x14]: 1 
+Register[x15]: 1 
+Memory[05]: 1 
+Memory[06]: 8 
+
+***  Current Cycle:27, PC:56  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+MEM stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+EX stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[14]
+Register[x14]: 1 
+Register[x15]: 2 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:28, PC:60  *** 
+WB stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+branch performed!! Invalid instructions in the previous stages.
+MEM stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[2]
+Register[x14]: 1 
+Register[x15]: 2 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:29, PC:12  *** 
+WB stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x14, offset:20, rs1:x08
+IF stage: binary value of inst[3]
+Register[x14]: 1 
+Register[x15]: 2 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:30, PC:16  *** 
+EX stage: opcode: LW, rd:x14, offset:20, rs1:x08
+ID stage: opcode: LUI, rd:x15, imm:00
+IF stage: binary value of inst[4]
+Register[x14]: 1 
+Register[x15]: 2 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:31, PC:20  *** 
+MEM stage: opcode: LW, rd:x14, offset:20, rs1:x08
+EX stage: opcode: LUI, rd:x15, imm:00
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[5]
+Register[x14]: 1 
+Register[x15]: 2 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:32, PC:24  *** 
+WB stage: opcode: LW, rd:x14, offset:20, rs1:x08
+MEM stage: opcode: LUI, rd:x15, imm:00
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+IF stage: binary value of inst[6]
+Register[x14]: 2 
+Register[x15]: 2 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:33, PC:28  *** 
+WB stage: opcode: LUI, rd:x15, imm:00
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[7]
+Register[x14]: 2 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:34, PC:32  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+alu_result : 2
+Truth Value : 0
+MEM stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+EX stage: opcode: LW, rd:x15, offset:24, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[8]
+Register[x14]: 2 
+Register[x15]: 4 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:35, PC:36  *** 
+WB stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+MEM stage: opcode: LW, rd:x15, offset:24, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+IF stage: binary value of inst[9]
+Register[x14]: 2 
+Register[x15]: 4 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:36, PC:40  *** 
+WB stage: opcode: LW, rd:x15, offset:24, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+ID stage: opcode: LW, rd:x15, offset:20, rs1:x08
+IF stage: binary value of inst[10]
+Register[x14]: 2 
+Register[x15]: 8 
+Memory[05]: 2 
+Memory[06]: 8 
+
+***  Current Cycle:37, PC:44  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+MEM stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+EX stage: opcode: LW, rd:x15, offset:20, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+IF stage: binary value of inst[11]
+Register[x14]: 2 
+Register[x15]: 12 
+Memory[05]: 2 
+Memory[06]: 12 
+
+***  Current Cycle:38, PC:48  *** 
+WB stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+MEM stage: opcode: LW, rd:x15, offset:20, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+ID stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+IF stage: binary value of inst[12]
+Register[x14]: 2 
+Register[x15]: 12 
+Memory[05]: 2 
+Memory[06]: 12 
+
+***  Current Cycle:39, PC:52  *** 
+WB stage: opcode: LW, rd:x15, offset:20, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+EX stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+ID stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[13]
+Register[x14]: 2 
+Register[x15]: 2 
+Memory[05]: 2 
+Memory[06]: 12 
+
+***  Current Cycle:40, PC:56  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+MEM stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+EX stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[14]
+Register[x14]: 2 
+Register[x15]: 3 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:41, PC:60  *** 
+WB stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+branch performed!! Invalid instructions in the previous stages.
+MEM stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[2]
+Register[x14]: 2 
+Register[x15]: 3 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:42, PC:12  *** 
+WB stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x14, offset:20, rs1:x08
+IF stage: binary value of inst[3]
+Register[x14]: 2 
+Register[x15]: 3 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:43, PC:16  *** 
+EX stage: opcode: LW, rd:x14, offset:20, rs1:x08
+ID stage: opcode: LUI, rd:x15, imm:00
+IF stage: binary value of inst[4]
+Register[x14]: 2 
+Register[x15]: 3 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:44, PC:20  *** 
+MEM stage: opcode: LW, rd:x14, offset:20, rs1:x08
+EX stage: opcode: LUI, rd:x15, imm:00
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[5]
+Register[x14]: 2 
+Register[x15]: 3 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:45, PC:24  *** 
+WB stage: opcode: LW, rd:x14, offset:20, rs1:x08
+MEM stage: opcode: LUI, rd:x15, imm:00
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+IF stage: binary value of inst[6]
+Register[x14]: 3 
+Register[x15]: 3 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:46, PC:28  *** 
+WB stage: opcode: LUI, rd:x15, imm:00
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[7]
+Register[x14]: 3 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:47, PC:32  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+alu_result : 1
+Truth Value : 0
+MEM stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+EX stage: opcode: LW, rd:x15, offset:24, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[8]
+Register[x14]: 3 
+Register[x15]: 4 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:48, PC:36  *** 
+WB stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+MEM stage: opcode: LW, rd:x15, offset:24, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+IF stage: binary value of inst[9]
+Register[x14]: 3 
+Register[x15]: 4 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:49, PC:40  *** 
+WB stage: opcode: LW, rd:x15, offset:24, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+ID stage: opcode: LW, rd:x15, offset:20, rs1:x08
+IF stage: binary value of inst[10]
+Register[x14]: 3 
+Register[x15]: 12 
+Memory[05]: 3 
+Memory[06]: 12 
+
+***  Current Cycle:50, PC:44  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+MEM stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+EX stage: opcode: LW, rd:x15, offset:20, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+IF stage: binary value of inst[11]
+Register[x14]: 3 
+Register[x15]: 16 
+Memory[05]: 3 
+Memory[06]: 16 
+
+***  Current Cycle:51, PC:48  *** 
+WB stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+MEM stage: opcode: LW, rd:x15, offset:20, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+ID stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+IF stage: binary value of inst[12]
+Register[x14]: 3 
+Register[x15]: 16 
+Memory[05]: 3 
+Memory[06]: 16 
+
+***  Current Cycle:52, PC:52  *** 
+WB stage: opcode: LW, rd:x15, offset:20, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+EX stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+ID stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[13]
+Register[x14]: 3 
+Register[x15]: 3 
+Memory[05]: 3 
+Memory[06]: 16 
+
+***  Current Cycle:53, PC:56  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+MEM stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+EX stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[14]
+Register[x14]: 3 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:54, PC:60  *** 
+WB stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+branch performed!! Invalid instructions in the previous stages.
+MEM stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[2]
+Register[x14]: 3 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:55, PC:12  *** 
+WB stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x14, offset:20, rs1:x08
+IF stage: binary value of inst[3]
+Register[x14]: 3 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:56, PC:16  *** 
+EX stage: opcode: LW, rd:x14, offset:20, rs1:x08
+ID stage: opcode: LUI, rd:x15, imm:00
+IF stage: binary value of inst[4]
+Register[x14]: 3 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:57, PC:20  *** 
+MEM stage: opcode: LW, rd:x14, offset:20, rs1:x08
+EX stage: opcode: LUI, rd:x15, imm:00
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[5]
+Register[x14]: 3 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:58, PC:24  *** 
+WB stage: opcode: LW, rd:x14, offset:20, rs1:x08
+MEM stage: opcode: LUI, rd:x15, imm:00
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+IF stage: binary value of inst[6]
+Register[x14]: 4 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:59, PC:28  *** 
+WB stage: opcode: LUI, rd:x15, imm:00
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[7]
+Register[x14]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:60, PC:32  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+alu_result : 0
+Truth Value : 0
+MEM stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+EX stage: opcode: LW, rd:x15, offset:24, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[8]
+Register[x14]: 4 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:61, PC:36  *** 
+WB stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+MEM stage: opcode: LW, rd:x15, offset:24, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+IF stage: binary value of inst[9]
+Register[x14]: 4 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:62, PC:40  *** 
+WB stage: opcode: LW, rd:x15, offset:24, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+ID stage: opcode: LW, rd:x15, offset:20, rs1:x08
+IF stage: binary value of inst[10]
+Register[x14]: 4 
+Register[x15]: 16 
+Memory[05]: 4 
+Memory[06]: 16 
+
+***  Current Cycle:63, PC:44  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+MEM stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+EX stage: opcode: LW, rd:x15, offset:20, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+IF stage: binary value of inst[11]
+Register[x14]: 4 
+Register[x15]: 20 
+Memory[05]: 4 
+Memory[06]: 20 
+
+***  Current Cycle:64, PC:48  *** 
+WB stage: opcode: SW, rs1:x08, offset:24, rs2:x15
+MEM stage: opcode: LW, rd:x15, offset:20, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+ID stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+IF stage: binary value of inst[12]
+Register[x14]: 4 
+Register[x15]: 20 
+Memory[05]: 4 
+Memory[06]: 20 
+
+***  Current Cycle:65, PC:52  *** 
+WB stage: opcode: LW, rd:x15, offset:20, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+EX stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+ID stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[13]
+Register[x14]: 4 
+Register[x15]: 4 
+Memory[05]: 4 
+Memory[06]: 20 
+
+***  Current Cycle:66, PC:56  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:01, 
+MEM stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+EX stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[14]
+Register[x14]: 4 
+Register[x15]: 5 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:67, PC:60  *** 
+WB stage: opcode: SW, rs1:x08, offset:20, rs2:x15
+branch performed!! Invalid instructions in the previous stages.
+MEM stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+IF stage: binary value of inst[2]
+Register[x14]: 4 
+Register[x15]: 5 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:68, PC:12  *** 
+WB stage: opcode: BEQ, rs1:x00, rs2:00, imm:-40
+ID stage: opcode: LW, rd:x14, offset:20, rs1:x08
+IF stage: binary value of inst[3]
+Register[x14]: 4 
+Register[x15]: 5 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:69, PC:16  *** 
+EX stage: opcode: LW, rd:x14, offset:20, rs1:x08
+ID stage: opcode: LUI, rd:x15, imm:00
+IF stage: binary value of inst[4]
+Register[x14]: 4 
+Register[x15]: 5 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:70, PC:20  *** 
+MEM stage: opcode: LW, rd:x14, offset:20, rs1:x08
+EX stage: opcode: LUI, rd:x15, imm:00
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+IF stage: binary value of inst[5]
+Register[x14]: 4 
+Register[x15]: 5 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:71, PC:24  *** 
+WB stage: opcode: LW, rd:x14, offset:20, rs1:x08
+MEM stage: opcode: LUI, rd:x15, imm:00
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+ID stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+IF stage: binary value of inst[6]
+Register[x14]: 5 
+Register[x15]: 5 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:72, PC:28  *** 
+WB stage: opcode: LUI, rd:x15, imm:00
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+EX stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[7]
+Register[x14]: 5 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:73, PC:32  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:04, 
+alu_result : -1
+Truth Value : 0
+branch performed!! Invalid instructions in the previous stages.
+MEM stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+IF stage: binary value of inst[13]
+Register[x14]: 5 
+Register[x15]: 4 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:74, PC:56  *** 
+WB stage: opcode: BLT, rs1:x15, rs2:x14, imm:32
+ID stage: opcode: LW, rd:x15, offset:24, rs1:x08
+IF stage: binary value of inst[14]
+Register[x14]: 5 
+Register[x15]: 4 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:75, PC:60  *** 
+EX stage: opcode: LW, rd:x15, offset:24, rs1:x08
+ID stage: opcode: ADDI, rd:x15, rs1:x15, imm:10, 
+IF stage: binary value of inst[15]
+Register[x14]: 5 
+Register[x15]: 4 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:76, PC:64  *** 
+MEM stage: opcode: LW, rd:x15, offset:24, rs1:x08
+EX stage: opcode: ADDI, rd:x15, rs1:x15, imm:10, 
+ID stage: opcode: SW, rs1:x08, offset:28, rs2:x15
+There is no more instruction to read.
+Register[x14]: 5 
+Register[x15]: 4 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:77, PC:64  *** 
+WB stage: opcode: LW, rd:x15, offset:24, rs1:x08
+MEM stage: opcode: ADDI, rd:x15, rs1:x15, imm:10, 
+EX stage: opcode: SW, rs1:x08, offset:28, rs2:x15
+There is no more instruction to read.
+Register[x14]: 5 
+Register[x15]: 20 
+Memory[05]: 5 
+Memory[06]: 20 
+
+***  Current Cycle:78, PC:64  *** 
+WB stage: opcode: ADDI, rd:x15, rs1:x15, imm:10, 
+MEM stage: opcode: SW, rs1:x08, offset:28, rs2:x15
+There is no more instruction to read.
+Register[x14]: 5 
+Register[x15]: 30 
+Memory[05]: 5 
+Memory[06]: 20 
+Memory[07]: 30 
+
+***  Current Cycle:79, PC:64  *** 
+WB stage: opcode: SW, rs1:x08, offset:28, rs2:x15
+There is no more instruction to read.
+Register[x14]: 5 
+Register[x15]: 30 
+Memory[05]: 5 
+Memory[06]: 20 
+Memory[07]: 30 
+
+ *** Program is done.. *** 
+Total cycle simulated: 79
+Register[x14]: 5 
+Register[x15]: 30 
+Memory[05]: 5 
+Memory[06]: 20 
+Memory[07]: 30 
+x3 = 0
