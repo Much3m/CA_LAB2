@@ -122,7 +122,7 @@ INSTRUCTION decode(RAW_INST target_instruction) {
 
 // 명령어 페치(fetch)함수: 주어진 프로그램(txt파일)으로부터 명령어를 읽어 들임
 RAW_INST fetch(uint32_t pc) {
-    char filename[] = "hw02_programA.txt"; //프로그램B를 수행하기 위해서는 문자열을 "hw02_programB.txt"로 변경
+    char filename[] = "hw02_programB.txt"; //프로그램B를 수행하기 위해서는 문자열을 "hw02_programB.txt"로 변경
     char buffer[100];
     FILE* file;
     char* token;
@@ -280,8 +280,6 @@ int clock_cycle(int cycle) {
             memory[EX_MEM.alu_result / 4] = registers[EX_MEM.decoded_inst.rs2];
         }
         else if (EX_MEM.decoded_inst.opcode == BLT) {
-            printf("alu_result : %d\n",EX_MEM.alu_result);
-            printf("Truth Value : %d\n",(EX_MEM.alu_result < 0));
             if ((int)EX_MEM.alu_result < 0) {
                 printf("branch performed!! Invalid instructions in the previous stages.\n");
                 // TODO. 프로그램 카운터 값 목적지 주소로 업데이트
@@ -381,7 +379,7 @@ int clock_cycle(int cycle) {
             EX_MEM.alu_result = rs1 - rs2;
         }
         else if (ID_EX.decoded_inst.opcode == LUI) {  // lui - 아래는 예시 제공을 위한 완성된 코드입니다. 
-            EX_MEM.alu_result = rs1 + (ID_EX.decoded_inst.imm << 12);
+            EX_MEM.alu_result = (ID_EX.decoded_inst.imm << 12);
         }
         printf("EX stage: ");
         print_instruction_info(ID_EX.decoded_inst);
@@ -418,6 +416,7 @@ int clock_cycle(int cycle) {
     print_register_values();    //print registers' value if it is not zero.
     print_memory_values();      //print memory data if it is not zero.
     printf("\n");
+    getchar();
 
     //더 이상 수행할 명령어가 없고 모든 stage에서 아무런 동작도 하지 않는 경우, 프로그램을 종료함.
     if (strcmp(IF_ID.raw_inst.inst, "nop") == 0 && !ID_EX.valid && !EX_MEM.valid && !MEM_WB.valid) {
@@ -430,14 +429,14 @@ int clock_cycle(int cycle) {
 
 int main() {
     /// 프로그램 A를 위한 초기화
-    registers[2] = 4;
-    registers[3] = 8;
-    registers[5] = 16;
-    registers[7] = 7;
-    registers[8] = 8;
-    registers[9] = 9;
-    memory[2] = 44;
-    memory[9] = 40;
+    // registers[2] = 4;
+    // registers[3] = 8;
+    // registers[5] = 16;
+    // registers[7] = 7;
+    // registers[8] = 8;
+    // registers[9] = 9;
+    // memory[2] = 44;
+    // memory[9] = 40;
     /// *** 프로그램 B를 사용할 때는 위의 초기화 부분을 전체 주석처리 하고 수행합니다. ***
 
     pc = 0;
