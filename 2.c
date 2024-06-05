@@ -8,7 +8,9 @@
 
 typedef unsigned int       uint32_t;
 typedef int                int32_t;
-int flag_1, flag_2;
+
+// Data Fowarding 여부를 확인하기 위한 전역변수
+int flag_1, flag_2;     
 
 // 레지스터 개수 및 메모리 크기 정의
 #define NUM_REGISTERS 32
@@ -56,8 +58,8 @@ typedef struct {
     uint32_t alu_result;
     uint32_t mem_data;
     uint8_t valid;
-    uint8_t Frs1;
-    uint8_t Frs2;
+    uint8_t Frs1; // Fowarding된 rs1 정보를 저장하기 위한 변수 
+    uint8_t Frs2; // Fowarding된 rs2 정보를 저장하기 위한 변수 
     int imm;
 } PipelineRegister;
 
@@ -137,16 +139,13 @@ RAW_INST fetch(uint32_t pc) {
         perror("파일을 열 수 없습니다");
         exit(1);
     }
-
     // 파일에서 한 줄씩 읽기
-    //printf("curr pc: %d, targetline:%d\n", pc, target_line);
     while (fgets(buffer, sizeof(buffer), file) != NULL) {
         if (current_line == target_line) {
             token = strtok(buffer, " \t\n");
             strcpy(target_instruction.inst, token);
             int i = 0;
             while (token != NULL) {
-                //printf("%s\n", token);
                 token = strtok(NULL, " \t\n");
                 if (token != NULL)
                     target_instruction.param[i] = atoi(token);
@@ -157,19 +156,11 @@ RAW_INST fetch(uint32_t pc) {
         }
         current_line++;
     }
-
-
     // 파일을 끝까지 읽었는지 확인
     if (match_flag == 0) {
         strcpy(target_instruction.inst, "nop");
         fclose(file);
     }
-
-    // 결과 출력
-    //printf("첫 번째 단어: %s\n", target_instruction.inst);
-    //printf("두 번째 단어: %d\n", target_instruction.param[0]);
-    //printf("세 번째 단어: %d\n", target_instruction.param[1]);
-    //printf("네 번째 단어: %d\n", target_instruction.param[2]);
 
     // 파일 닫기
     fclose(file);
@@ -178,18 +169,22 @@ RAW_INST fetch(uint32_t pc) {
 
 //레지스터 데이터 중, 0이 아닌 값을 출력하는 함수
 void print_register_values() {
+    printf("Register Value\n| ");
     for (int i = 0; i < NUM_REGISTERS; i++) {
         if (registers[i] != 0)
-            printf("Register[x%02d]: %d \n", i, registers[i]);
+            printf("[x%02d]: %d | ", i, registers[i]);
     }
+    printf("\n");
 }
 
 //메모리 데이터 중, 0이 아닌 값을 출력하는 함수
 void print_memory_values() {
+    printf("Memory Value\n| ");
     for (int i = 0; i < MEMORY_SIZE; i++) {
         if (memory[i] != 0)
-            printf("Memory[%02d]: %d \n", i, memory[i]);
+            printf("Mem[%02d]: %d | ", i, memory[i]);
     }
+    printf("\n");
 }
 
 //명령어 정보를 출력하는 함수
@@ -226,38 +221,29 @@ int clock_cycle(int cycle) {
 
     // Write Back (WB)
     if (MEM_WB.valid) {
-        if (MEM_WB.decoded_inst.rd == ID_EX.decoded_inst.rs1 && MEM_WB.decoded_inst.rd != 0 && ID_EX.valid == 1) {
-            if ((MEM_WB.decoded_inst.opcode == ADD || MEM_WB.decoded_inst.opcode == ADDI || MEM_WB.decoded_inst.opcode == LUI) && ID_EX.valid == 1) { 
-                //TODO: ADD와 같이, WB 단계에서 레지스터 파일 값을 변경해야 하는 명령어 타입에 대해 
-                //ALU 연산 값으로 목적 레지스터 파일 값 업데이트 수행.
-                ID_EX.Frs1 = MEM_WB.alu_result;
+        if (MEM_WB.decoded_inst.rd == ID_EX.decoded_inst.rs1 && MEM_WB.decoded_inst.rd != 0 && ID_EX.valid == 1) { // Data_hazard 감지
+            if ((MEM_WB.decoded_inst.opcode == ADD || MEM_WB.decoded_inst.opcode == ADDI || MEM_WB.decoded_inst.opcode == LUI)) { 
+                ID_EX.Frs1 = MEM_WB.alu_result; // ID_EX의 Frs1에 fowarding
             }
             else if (MEM_WB.decoded_inst.opcode == LW) {
-                //TODO-2: LW 연산에 적합한 동작 수행
                 ID_EX.Frs1 = MEM_WB.mem_data;
             }
             flag_1 = 1;
         }
-        if (MEM_WB.decoded_inst.rd == ID_EX.decoded_inst.rs2 && MEM_WB.decoded_inst.rd != 0 && ID_EX.valid == 1) {
+        if (MEM_WB.decoded_inst.rd == ID_EX.decoded_inst.rs2 && MEM_WB.decoded_inst.rd != 0 && ID_EX.valid == 1) { // Data_hazard 감지
             if ((MEM_WB.decoded_inst.opcode == ADD || MEM_WB.decoded_inst.opcode == ADDI || MEM_WB.decoded_inst.opcode == LUI)) { 
-                //TODO: ADD와 같이, WB 단계에서 레지스터 파일 값을 변경해야 하는 명령어 타입에 대해 
-                //ALU 연산 값으로 목적 레지스터 파일 값 업데이트 수행.
-                ID_EX.Frs2 = MEM_WB.alu_result;
+                ID_EX.Frs2 = MEM_WB.alu_result; // ID_EX의 Frs2에 fowarding
             }
             else if (MEM_WB.decoded_inst.opcode == LW) {
-                //TODO-2: LW 연산에 적합한 동작 수행
                 ID_EX.Frs2 = MEM_WB.mem_data;
             }
             flag_2 = 1;
         }
             
         if (MEM_WB.decoded_inst.opcode == ADD || MEM_WB.decoded_inst.opcode == ADDI || MEM_WB.decoded_inst.opcode == LUI) { 
-            //TODO: ADD와 같이, WB 단계에서 레지스터 파일 값을 변경해야 하는 명령어 타입에 대해 
-            //ALU 연산 값으로 목적 레지스터 파일 값 업데이트 수행.
             registers[MEM_WB.decoded_inst.rd] = MEM_WB.alu_result;
         }
         else if (MEM_WB.decoded_inst.opcode == LW) {
-            //TODO-2: LW 연산에 적합한 동작 수행
             registers[MEM_WB.decoded_inst.rd] = MEM_WB.mem_data;
         }
         printf("WB stage: ");
@@ -287,47 +273,48 @@ int clock_cycle(int cycle) {
                 pc = EX_MEM.pc + EX_MEM.decoded_inst.imm;
                 IF_ID.valid = 0;
                 ID_EX.valid = 0;
+                EX_MEM.valid = 0;
+                printf("MEM stage: ");
+                print_instruction_info(EX_MEM.decoded_inst);
+                printf("\n");
+                return (1);
             }
         }
         else if (EX_MEM.decoded_inst.opcode == BEQ) {
             if (EX_MEM.alu_result == 0) {            
                 printf("branch performed!! Invalid instructions in the previous stages.\n");
-                // TODO. 프로그램 카운터 값 목적지 주소로 업데이트
-                // TODO. Branch taken으로 인한, pipelining stage 업데이트
                 pc = EX_MEM.pc + EX_MEM.decoded_inst.imm;
                 IF_ID.valid = 0;
                 ID_EX.valid = 0;
+                EX_MEM.valid = 0;
+                printf("MEM stage: ");
+                print_instruction_info(EX_MEM.decoded_inst);
+                printf("\n");
+                return (1);
             }
         }
         
 
         if (EX_MEM.decoded_inst.rd == ID_EX.decoded_inst.rs1 && EX_MEM.decoded_inst.rd != 0 && ID_EX.valid == 1 ) {
             if ((MEM_WB.decoded_inst.opcode == ADD || MEM_WB.decoded_inst.opcode == ADDI || MEM_WB.decoded_inst.opcode == LUI)) { 
-                //TODO: ADD와 같이, WB 단계에서 레지스터 파일 값을 변경해야 하는 명령어 타입에 대해 
-                //ALU 연산 값으로 목적 레지스터 파일 값 업데이트 수행.
                 ID_EX.Frs1 = MEM_WB.alu_result;
             }
             else if (EX_MEM.decoded_inst.opcode == LW) {
-                //TODO-2: LW 연산에 적합한 동작 수행
                 ID_EX.Frs1 = MEM_WB.mem_data;
             }
             flag_1 = 1;
         }
         if (MEM_WB.decoded_inst.rd == ID_EX.decoded_inst.rs2 && MEM_WB.decoded_inst.rd != 0 && ID_EX.valid == 1 ) {
             if ((MEM_WB.decoded_inst.opcode == ADD || MEM_WB.decoded_inst.opcode == ADDI || MEM_WB.decoded_inst.opcode == LUI)) { 
-                //TODO: ADD와 같이, WB 단계에서 레지스터 파일 값을 변경해야 하는 명령어 타입에 대해 
-                //ALU 연산 값으로 목적 레지스터 파일 값 업데이트 수행.
                 ID_EX.Frs2 = MEM_WB.alu_result;
             }
             else if (MEM_WB.decoded_inst.opcode == LW) {
-                //TODO-2: LW 연산에 적합한 동작 수행
                 ID_EX.Frs2 = MEM_WB.mem_data;
             }
             flag_2 = 1;
         }
         printf("MEM stage: ");
         print_instruction_info(EX_MEM.decoded_inst);
-        // print_memory_values();
     }
     else {
         MEM_WB.valid = 0;
@@ -339,24 +326,24 @@ int clock_cycle(int cycle) {
         EX_MEM.pc = ID_EX.pc;
         EX_MEM.valid = 1; 
         int rs1, rs2;
-        if (flag_1 == 1 && flag_2 == 1) {
+        if (flag_1 == 1 && flag_2 == 1) { // rs1, rs2 모두 fowarding된 경우
             rs1 = ID_EX.Frs1;
             rs2 = ID_EX.Frs2;
         }
-        else if (flag_1 == 1 && flag_2 == 0) {
+        else if (flag_1 == 1 && flag_2 == 0) { // rs1만 fowarding된 경우
             rs1 = ID_EX.Frs1;
             rs2 = registers[ID_EX.decoded_inst.rs2];
         }
-        else if (flag_1 == 0 && flag_2 == 1) {
+        else if (flag_1 == 0 && flag_2 == 1) { // rs2만 fowarding된 경우
             rs2 = ID_EX.Frs2;
             rs1 = registers[ID_EX.decoded_inst.rs1];
         }
-        else if (flag_1 == 0 && flag_2 == 0) {
+        else if (flag_1 == 0 && flag_2 == 0) { // fowarding이 발생하지 않은 경우
             rs1 = registers[ID_EX.decoded_inst.rs1];
             rs2 = registers[ID_EX.decoded_inst.rs2];
         }
-        flag_1 = 0;
-        flag_2 = 0;
+        flag_1 = 0; // fowarding을 확인하는 flag를 0으로 초기화
+        flag_2 = 0; // fowarding을 확인하는 flag를 0으로 초기화
         
         //TODO. 주어진 명령어 종류에 따른 적합한 ALU 연산 수행.
         //ADD, ADDI, LW, SW, BEQ, BLT, LUI
@@ -416,7 +403,6 @@ int clock_cycle(int cycle) {
     print_register_values();    //print registers' value if it is not zero.
     print_memory_values();      //print memory data if it is not zero.
     printf("\n");
-    getchar();
 
     //더 이상 수행할 명령어가 없고 모든 stage에서 아무런 동작도 하지 않는 경우, 프로그램을 종료함.
     if (strcmp(IF_ID.raw_inst.inst, "nop") == 0 && !ID_EX.valid && !EX_MEM.valid && !MEM_WB.valid) {
@@ -453,7 +439,7 @@ int main() {
     print_register_values();
     print_memory_values();
     // 결과 출력
-    printf("x3 = %d\n", registers[3]);  // x3의 값 출력
+    // printf("x3 = %d\n", registers[3]);  // x3의 값 출력
 
     return 0;
 }
